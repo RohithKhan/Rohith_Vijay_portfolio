@@ -12,9 +12,6 @@
     text-rendering: optimizeLegibility;
   }
 
-  body {
-    @apply bg-ink-base text-white font-sans antialiased;
-  }
 
   #root {
     overflow-x: hidden;
@@ -41,11 +38,9 @@
     background: rgba(59, 130, 246, 0.5);
   }
 
-  h1, h2, h3, h4 {
-    @apply tracking-tightish;
-  }
+ 
 }
-
+      
 @layer components {
   .glass {
     background: rgba(255, 255, 255, 0.04);
@@ -81,7 +76,7 @@
       transparent 100%
     );
     background-size: 200% 100%;
-    @apply animate-shimmer;
+    
   }
 }
 
