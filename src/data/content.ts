@@ -12,6 +12,12 @@ import {
   SiGit,
   SiGithub,
   SiFramer,
+  SiUnity,
+  SiUnrealengine,
+  SiCursor,
+  SiGooglegemini,
+  SiBlender,
+  SiClaude,
 } from 'react-icons/si';
 import { TbApi, TbPalette, TbSparkles } from 'react-icons/tb';
 
@@ -29,13 +35,14 @@ export type Project = {
   accent: string;
   liveUrl: string;
   githubUrl: string;
+  underDevelopment?: boolean;
 };
 
 export type Skill = {
   name: string;
   icon: IconType;
   level: number;
-  group: 'Frontend' | 'Backend' | 'AI Tools' | 'UI Design' | 'Performance';
+  group: 'Frontend' | 'Backend' | 'AI Tools' | 'UI Design' | 'AR/VR';
 };
 
 export type Experience = {
@@ -54,14 +61,14 @@ export type Achievement = {
 
 export const profile = {
   name: 'Rohith Vijay',
-  role: 'Frontend Developer',
+  role: 'Engineer',
   subtitle:
     'Building immersive digital experiences with modern web technologies.',
-  email: 'rohith.khan.dev@gmail.com',
+  email: 'rohithvijay2205@gmail.com',
   github: 'https://github.com/rohithkhan',
-  linkedin: 'https://www.linkedin.com/in/rohithkhan',
-  resume: '/resume.pdf',
-  location: 'India',
+  linkedin: 'https://www.linkedin.com/in/v-rohith-a06243296/',
+  resume: '/Rohith_Resume.docx',
+  location: 'Chennai, Tamil Nadu, India',
 };
 
 export const stats = [
@@ -82,11 +89,17 @@ export const skills: Skill[] = [
   { name: 'GSAP', icon: TbSparkles, level: 78, group: 'Frontend' },
   { name: 'Node.js', icon: SiNodedotjs, level: 75, group: 'Backend' },
   { name: 'MongoDB', icon: SiMongodb, level: 70, group: 'Backend' },
-  { name: 'Python', icon: SiPython, level: 72, group: 'Backend' },
+  { name: 'Python', icon: SiPython, level: 40, group: 'Backend' },
   { name: 'REST APIs', icon: TbApi, level: 82, group: 'Backend' },
   { name: 'Git', icon: SiGit, level: 88, group: 'Backend' },
   { name: 'GitHub', icon: SiGithub, level: 90, group: 'Backend' },
   { name: 'UI / UX', icon: TbPalette, level: 84, group: 'UI Design' },
+  { name: 'Claude', icon: SiClaude, level: 85, group: 'AI Tools' },
+  { name: 'Cursor', icon: SiCursor, level: 95, group: 'AI Tools' },
+  { name: 'Gemini', icon: SiGooglegemini, level: 84, group: 'AI Tools' },
+  { name: 'Unity', icon: SiUnity, level: 78, group: 'AR/VR' },
+  { name: 'Unreal Engine', icon: SiUnrealengine, level: 85, group: 'AR/VR' },
+  { name: 'Blender', icon: SiBlender, level: 80, group: 'AR/VR' },
 ];
 
 export const skillGroups: { name: Skill['group']; blurb: string }[] = [
@@ -94,7 +107,7 @@ export const skillGroups: { name: Skill['group']; blurb: string }[] = [
   { name: 'Backend', blurb: 'Wiring data, APIs, and infrastructure.' },
   { name: 'AI Tools', blurb: 'Shipping intelligent, assistive features.' },
   { name: 'UI Design', blurb: 'Designing with taste and intention.' },
-  { name: 'Performance', blurb: 'Obsessing over every millisecond.' },
+  { name: 'AR/VR', blurb: 'Creating immersive, interactive experiences.' },
 ];
 
 export const projects: Project[] = [
@@ -116,7 +129,7 @@ export const projects: Project[] = [
       'Reduced administrative overhead by an estimated 40% and gave staff a single source of truth for student data.',
     accent: '#3B82F6',
     liveUrl: '#',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/RohithKhan/SMS.git',
   },
   {
     id: 'jit-permigo',
@@ -129,13 +142,13 @@ export const projects: Project[] = [
       'Standing access created security risk; teams needed a way to request elevated permissions only for the moment they needed them.',
     solution:
       'Built a request-and-approve flow with live countdowns, scoped scopes, and an immutable audit log — all wrapped in a calm, focused interface.',
-    stack: ['Next.js', 'TypeScript', 'Node.js', 'REST APIs', 'Tailwind'],
+    stack: ['React-Vite', 'TypeScript', 'Node.js', 'REST APIs', 'Tailwind'],
     challenges:
       'Balancing strict security with a frictionless UX meant designing flows that feel instant while never skipping a verification step.',
     impact:
       'Cut standing privileged access to near zero while keeping developer velocity high.',
     accent: '#22C55E',
-    liveUrl: '#',
+    liveUrl: 'https://www.jit.college/',
     githubUrl: '#',
   },
   {
@@ -144,19 +157,20 @@ export const projects: Project[] = [
     tagline: 'A voice-first assistant that actually feels helpful.',
     year: '2025',
     overview:
-      'A conversational AI assistant with voice input, contextual memory, and a sleek heads-up display for daily workflows.',
+      'A personal AI voice assistant powered by a Small Language Model (SLM), designed to understand natural-language commands and assist with everyday tasks through an interactive JARVIS-style interface.',
     problem:
-      'Most assistants felt like chatbots bolted onto a text box — no presence, no personality, no real utility.',
+      'General-purpose AI assistants can be resource-intensive and overly dependent on large external models, making it difficult to create a lightweight, personalized assistant with control over its behavior and memory.',
     solution:
-      'Built a voice-first interface with streaming responses, a memory layer, and quick-action cards for common tasks like summaries and scheduling.',
-    stack: ['React', 'Python', 'REST APIs', 'Framer Motion', 'Vite'],
+      'Built a JARVIS-inspired voice assistant around an SLM architecture, combining speech recognition, tokenization, language-model inference, contextual memory, and voice responses into a unified conversational workflow.',
+    stack: ['SLM', 'Python', 'PyTorch', 'AI', 'Speech Recognition', 'NLP'],
     challenges:
-      'Making streaming responses feel instant and natural required careful orchestration of latency, typing, and animation.',
+      'Designing the complete AI pipeline—from converting voice into text and tokenizing user input to generating contextual responses and converting them back into speech—while keeping the interaction responsive and natural.',
     impact:
-      'Became a daily driver for quick research, summaries, and reminders.',
+      'Created a functional personal AI assistant that demonstrates how lightweight language models can be integrated with voice interaction, contextual memory, and real-world assistant workflows.',
     accent: '#60A5FA',
     liveUrl: '#',
     githubUrl: '#',
+    underDevelopment: true,
   },
   {
     id: 'vr-agriculture',
@@ -177,6 +191,7 @@ export const projects: Project[] = [
     accent: '#22C55E',
     liveUrl: '#',
     githubUrl: '#',
+    underDevelopment: true,
   },
   {
     id: 'alumni-portal',
@@ -195,8 +210,8 @@ export const projects: Project[] = [
     impact:
       'Reignited alumni engagement and became the go-to place for class reunions.',
     accent: '#3B82F6',
-    liveUrl: '#',
-    githubUrl: '#',
+    liveUrl: 'https://aluminifrontend-six.vercel.app/',
+    githubUrl: 'https://github.com/RohithKhan/Aluminifrontend.git',
   },
 ];
 

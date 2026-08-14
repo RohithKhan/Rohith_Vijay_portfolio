@@ -14,7 +14,7 @@ export function About() {
             A developer who treats the <span className="text-gradient-accent">browser as a canvas</span>.
           </>
         }
-        description="I'm Rohith Vijay, a frontend developer obsessed with the small details — the easing curve, the millisecond, the empty state. I build interfaces that feel considered, fast, and alive."
+        description="I'm Rohith Vijay, a Engineer obsessed with the small details — the easing curve, the millisecond, the empty state. I build interfaces that feel considered, fast, and alive."
       />
 
       <div className="mt-16 grid grid-cols-1 lg:grid-cols-5 gap-10">

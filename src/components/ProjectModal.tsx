@@ -41,6 +41,7 @@ export function ProjectModal({ project, onClose }: Props) {
             exit={{ y: 20, opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto no-scrollbar glass rounded-4xl p-6 sm:p-10"
+            data-lenis-prevent="true"
           >
             {/* Accent glow */}
             <div
@@ -51,7 +52,7 @@ export function ProjectModal({ project, onClose }: Props) {
             <button
               onClick={onClose}
               aria-label="Close"
-              className="absolute top-5 right-5 grid place-items-center w-10 h-10 rounded-full glass hover:bg-white/10 transition-colors"
+              className="absolute top-5 right-5 z-50 grid place-items-center w-10 h-10 rounded-full glass hover:bg-white/10 transition-colors"
             >
               <X size={18} />
             </button>
@@ -103,7 +104,7 @@ export function ProjectModal({ project, onClose }: Props) {
                 </a>
                 <button
                   onClick={onClose}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm text-muted hover:text-white transition-colors ml-auto"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm text-muted hover:text-white transition-colors ml-auto relative z-50"
                 >
                   Close <ArrowRight size={16} />
                 </button>

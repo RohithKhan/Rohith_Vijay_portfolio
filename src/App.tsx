@@ -5,6 +5,7 @@ import { Seo } from '@/components/Seo';
 import { Loader } from '@/components/Loader';
 import { CustomCursor } from '@/components/CustomCursor';
 import { Background } from '@/components/Background';
+import { CyberScrollLine } from '@/components/CyberScrollLine';
 import { Navbar } from '@/components/Navbar';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { SectionDivider } from '@/components/ui/SectionDivider';
@@ -27,6 +28,7 @@ function App() {
       <Seo />
       <Loader onComplete={() => setLoaded(true)} />
       <CustomCursor />
+      <CyberScrollLine />
       <Background />
       <ScrollProgress />
 

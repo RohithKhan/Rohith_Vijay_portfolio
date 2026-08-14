@@ -12,11 +12,12 @@ type Props = {
 export function ProjectCard({ project, index, onOpen }: Props) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.97 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 60, rotateX: 15, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       className="h-full"
+      style={{ perspective: 1200 }}
     >
       <TiltCard
         max={7}
@@ -63,6 +64,16 @@ export function ProjectCard({ project, index, onOpen }: Props) {
             <div className="absolute inset-0 opacity-20 mix-blend-overlay">
               <div className="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgba(255,255,255,0.05)_2px,rgba(255,255,255,0.05)_3px)]" />
             </div>
+            
+            {/* Under Development Watermark */}
+            {project.underDevelopment && (
+              <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none mix-blend-overlay opacity-60">
+                <div className="transform -rotate-12 text-white font-black text-2xl sm:text-3xl uppercase tracking-widest border-[3px] border-white px-6 py-2 rounded-xl whitespace-nowrap">
+                  Development
+                </div>
+              </div>
+            )}
+
             <div className="absolute inset-0 ring-1 ring-inset ring-white/5 group-hover:ring-white/15 transition-all duration-500" />
 
             <div className="absolute top-4 left-4 flex items-center gap-2">

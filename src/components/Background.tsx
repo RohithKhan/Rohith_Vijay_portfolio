@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion';
 
 /**
  * Ambient animated background:
@@ -31,6 +31,13 @@ export function Background() {
   const gx = useSpring(mx, { stiffness: 40, damping: 30 });
   const gy = useSpring(my, { stiffness: 40, damping: 30 });
 
+  // Scroll-linked parallax
+  const { scrollY } = useScroll();
+  // Smooth scroll translation for a glass-like depth effect
+  const smoothScrollY = useSpring(scrollY, { stiffness: 60, damping: 20 });
+  const gridY = useTransform(smoothScrollY, [0, 5000], [0, 500]);
+  const particleParallaxY = useTransform(smoothScrollY, [0, 5000], [0, 200]);
+
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
       mx.set((e.clientX / window.innerWidth) * 100);
@@ -42,10 +49,11 @@ export function Background() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-ink-base pointer-events-none">
-      {/* Subtle animated grid - Desktop only */}
-      <motion.div
+      {/* Subtle animated grid with scroll parallax - Desktop only */}
+      {/* <motion.div
         className="hidden md:block absolute inset-0 opacity-[0.035]"
         style={{
+          y: gridY,
           backgroundImage:
             'linear-gradient(to right, rgba(255,255,255,0.7) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.7) 1px, transparent 1px)',
           backgroundSize: '64px 64px',
@@ -56,7 +64,7 @@ export function Background() {
         }}
         animate={{ backgroundPosition: ['0px 0px', '64px 64px'] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-      />
+      /> */}
 
       {/* Slowly drifting radial lights - Desktop only */}
       <motion.div
@@ -84,25 +92,27 @@ export function Background() {
         }}
       />
 
-      {/* Floating particles */}
-      {particles.map((p) => (
-        <motion.span
-          key={p.id}
-          className="absolute rounded-full bg-white/40"
-          style={{ left: `${p.left}%`, top: `${p.top}%`, width: p.size, height: p.size }}
-          animate={{
-            y: [0, -30, 0],
-            x: [0, p.xDrift, 0],
-            opacity: [0.1, 0.5, 0.1],
-          }}
-          transition={{
-            duration: p.duration,
-            delay: p.delay,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
+      {/* Floating particles with scroll parallax */}
+      <motion.div className="absolute inset-0" style={{ y: particleParallaxY }}>
+        {particles.map((p) => (
+          <motion.span
+            key={p.id}
+            className="absolute rounded-full bg-white/40"
+            style={{ left: `${p.left}%`, top: `${p.top}%`, width: p.size, height: p.size }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, p.xDrift, 0],
+              opacity: [0.1, 0.5, 0.1],
+            }}
+            transition={{
+              duration: p.duration,
+              delay: p.delay,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
+      </motion.div>
 
       {/* Film-grain noise */}
       <svg className="absolute inset-0 w-full h-full opacity-[0.03]">
