@@ -51,15 +51,35 @@ export function ProjectCard({ project, index, onOpen }: Props) {
           className="block w-full text-left h-full"
         >
           {/* Visual header with slow zoom */}
-          <div className="relative h-44 sm:h-52 overflow-hidden">
+          <div className="relative h-44 sm:h-52 overflow-hidden bg-[#0B0B0B]">
             <motion.div
-              className="absolute inset-0"
-              style={{
-                background: `radial-gradient(120% 120% at 20% 10%, ${project.accent}40, transparent 55%), radial-gradient(120% 120% at 90% 90%, ${project.accent}25, transparent 55%), #0B0B0B`,
-              }}
+              className="absolute inset-0 bg-cover bg-center"
+              style={
+                !project.video && project.backgroundImage
+                  ? { backgroundImage: `url(${project.backgroundImage})` }
+                  : !project.video
+                  ? {
+                      background: `radial-gradient(120% 120% at 20% 10%, ${project.accent}40, transparent 55%), radial-gradient(120% 120% at 90% 90%, ${project.accent}25, transparent 55%), #0B0B0B`,
+                    }
+                  : undefined
+              }
               whileHover={{ scale: 1.12 }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            />
+            >
+              {project.video && (
+                <video
+                  src={project.video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              )}
+              {(project.backgroundImage || project.video) && (
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
+              )}
+            </motion.div>
             {/* Animated noise lines for texture */}
             <div className="absolute inset-0 opacity-20 mix-blend-overlay">
               <div className="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgba(255,255,255,0.05)_2px,rgba(255,255,255,0.05)_3px)]" />
@@ -69,7 +89,7 @@ export function ProjectCard({ project, index, onOpen }: Props) {
             {project.underDevelopment && (
               <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none mix-blend-overlay opacity-60">
                 <div className="transform -rotate-12 text-white font-black text-2xl sm:text-3xl uppercase tracking-widest border-[3px] border-white px-6 py-2 rounded-xl whitespace-nowrap">
-                  Development
+                  In Progress
                 </div>
               </div>
             )}

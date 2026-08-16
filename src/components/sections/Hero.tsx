@@ -3,11 +3,12 @@ import { useEffect, useRef } from 'react';
 import { ArrowDown, ArrowRight, Download, Rocket, Code2, Zap } from 'lucide-react';
 import {
   SiReact,
-  SiTypescript,
   SiNextdotjs,
   SiTailwindcss,
   SiNodedotjs,
   SiGithub,
+  SiUnity,
+  SiUnrealengine
 } from 'react-icons/si';
 import { profile, stats } from '@/data/content';
 import { Button } from '@/components/ui/Button';
@@ -15,8 +16,9 @@ import { Button } from '@/components/ui/Button';
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const heroTechs = [
+  { name: 'Augmented Reality', icon: SiUnity },
+  { name: 'Virtual Reality', icon: SiUnrealengine },
   { name: 'React', icon: SiReact },
-  { name: 'TypeScript', icon: SiTypescript },
   { name: 'Next.js', icon: SiNextdotjs },
   { name: 'Tailwind CSS', icon: SiTailwindcss },
   { name: 'Node.js', icon: SiNodedotjs },

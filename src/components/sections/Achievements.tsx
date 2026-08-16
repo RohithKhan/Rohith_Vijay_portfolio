@@ -71,7 +71,7 @@ export function Achievements() {
             <div className="relative flex-1">
               <h3 className="text-base font-medium tracking-tightish">{a.title}</h3>
               <p className="text-sm text-muted">
-                {a.issuer} · {a.year}
+                {a.issuer} {a.prize && `· ${a.prize}`} · {a.year}
               </p>
             </div>
             <Award size={18} className="relative text-muted/40 group-hover:text-accent/60 transition-colors" />

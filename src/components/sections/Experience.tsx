@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { experiences } from '@/data/content';
 import { easeOutExpo } from '@/lib/motion';
+import { SpatialDeveloperCore } from './SpatialDeveloperCore';
 
 export function Experience() {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,6 +26,13 @@ export function Experience() {
       />
 
       <div ref={ref} className="mt-16 relative">
+        {/* Developer Spatial Core Visualization - Occupying left space */}
+        <div className="hidden sm:block absolute left-0 top-0 bottom-0 w-1/2 z-0 pointer-events-none">
+          <div className="sticky top-[15vh] h-[70vh] min-h-[600px] w-full pointer-events-auto pr-8">
+            <SpatialDeveloperCore />
+          </div>
+        </div>
+
         {/* Track */}
         <div className="absolute left-[7px] sm:left-1/2 top-2 bottom-2 w-px -translate-x-1/2 bg-white/8" />
         {/* Growing progress line */}
@@ -41,9 +49,8 @@ export function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.8, delay: i * 0.05, ease: easeOutExpo }}
-              className={`relative pl-10 sm:pl-0 sm:grid sm:grid-cols-2 sm:gap-12 ${
-                i % 2 === 0 ? '' : 'sm:[direction:rtl]'
-              }`}
+              className={`relative pl-10 sm:pl-0 sm:grid sm:grid-cols-2 sm:gap-12 ${i % 2 === 0 ? 'sm:[direction:rtl]' : 'sm:[direction:rtl]'
+                }`}
             >
               {/* Node */}
               <span className="absolute left-0 sm:left-1/2 top-2 -translate-x-1/2 grid place-items-center w-4 h-4">
@@ -62,7 +69,7 @@ export function Experience() {
               {/* Card */}
               <motion.div
                 whileHover={{ y: -4 }}
-                className={`sm:[direction:ltr] ${i % 2 === 0 ? 'sm:pr-12 sm:text-right' : 'sm:col-start-2 sm:pl-12'}`}
+                className={`sm:[direction:ltr] ${i % 2 === 0 ? 'sm:pr-12 sm:text-left' : 'sm:col-start-2 sm:pl-12'}`}
               >
                 <div className="group card-surface rounded-3xl p-6 hover:border-white/15 transition-colors">
                   <span className="text-xs tracking-[0.2em] uppercase text-accent">

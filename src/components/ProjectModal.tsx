@@ -77,6 +77,27 @@ export function ProjectModal({ project, onClose }: Props) {
                 ))}
               </div>
 
+              {(project.video || project.backgroundImage) && (
+                <div className="mt-8 relative w-full aspect-video rounded-2xl overflow-hidden glass border border-white/5 bg-[#0B0B0B]">
+                  {project.video ? (
+                    <video
+                      src={project.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={project.backgroundImage}
+                      alt={project.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+              )}
+
               <div className="mt-8 space-y-7">
                 <Detail label="Overview" body={project.overview} />
                 <Detail label="The Problem" body={project.problem} />

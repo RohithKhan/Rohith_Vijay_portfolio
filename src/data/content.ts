@@ -33,6 +33,8 @@ export type Project = {
   challenges: string;
   impact: string;
   accent: string;
+  backgroundImage?: string;
+  video?: string;
   liveUrl: string;
   githubUrl: string;
   underDevelopment?: boolean;
@@ -56,6 +58,7 @@ export type Experience = {
 export type Achievement = {
   title: string;
   issuer: string;
+  prize?:string;
   year: string;
 };
 
@@ -128,6 +131,8 @@ export const projects: Project[] = [
     impact:
       'Reduced administrative overhead by an estimated 40% and gave staff a single source of truth for student data.',
     accent: '#3B82F6',
+    backgroundImage: '',
+    video: 'smsvideo.mp4',
     liveUrl: '#',
     githubUrl: 'https://github.com/RohithKhan/SMS.git',
   },
@@ -148,6 +153,7 @@ export const projects: Project[] = [
     impact:
       'Cut standing privileged access to near zero while keeping developer velocity high.',
     accent: '#22C55E',
+    backgroundImage: '/permigoss.png',
     liveUrl: 'https://www.jit.college/',
     githubUrl: '#',
   },
@@ -168,6 +174,7 @@ export const projects: Project[] = [
     impact:
       'Created a functional personal AI assistant that demonstrates how lightweight language models can be integrated with voice interaction, contextual memory, and real-world assistant workflows.',
     accent: '#60A5FA',
+    backgroundImage: '',
     liveUrl: '#',
     githubUrl: '#',
     underDevelopment: true,
@@ -183,12 +190,14 @@ export const projects: Project[] = [
       'Agricultural training lacked accessible, repeatable, low-risk environments for students to practice decision-making.',
     solution:
       'Created an interactive 3D farm with dynamic weather, soil, and crop systems, plus a scoring layer that rewards sustainable choices.',
-    stack: ['JavaScript', 'Python', 'REST APIs', 'UI/UX'],
+    stack: ['Blender', 'Unreal Engine', 'Virtual Reality', 'UI/UX'],
     challenges:
       'Translating real agronomy into believable, performant 3D systems required tight collaboration between domain and dev.',
     impact:
       'Used in workshops to introduce students to sustainable farming decisions.',
     accent: '#22C55E',
+    backgroundImage: '',
+    video: '/agriculture.mp4',
     liveUrl: '#',
     githubUrl: '#',
     underDevelopment: true,
@@ -210,12 +219,58 @@ export const projects: Project[] = [
     impact:
       'Reignited alumni engagement and became the go-to place for class reunions.',
     accent: '#3B82F6',
+    backgroundImage: '/alumni.png',
     liveUrl: 'https://aluminifrontend-six.vercel.app/',
     githubUrl: 'https://github.com/RohithKhan/Aluminifrontend.git',
   },
+  {
+  id: 'ar-targeting',
+  name: 'AR Ground & Mid-Air Targeting',
+  tagline: 'Real-world interaction through augmented reality.',
+  year: '2025',
+  overview:
+    'An augmented reality project built with Unity and Vuforia, exploring ground targeting and mid-air targeting for placing and interacting with virtual 3D objects in real-world environments.',
+  problem:
+    'Traditional 3D experiences are limited to screens, making it difficult to visualize and interact with virtual objects in a real-world context.',
+  solution:
+    'Implemented AR targeting techniques using Vuforia and Unity to detect target surfaces and enable virtual object placement and interaction within the physical environment.',
+  stack: ['Unity', 'Vuforia Engine', 'C#', 'Augmented Reality'],
+  challenges:
+    'Achieving reliable target detection and consistent virtual object placement while maintaining smooth AR tracking across different real-world environments.',
+  impact:
+    'Gained hands-on experience in AR development, spatial tracking, target detection, and real-world 3D object interaction.',
+  accent: '#8B5CF6',
+  backgroundImage: '',
+  video:'arvid.mp4',
+  liveUrl: '#',
+  githubUrl: '#',
+},
 ];
 
 export const experiences: Experience[] = [
+  {
+    role: 'Student Developer',
+    org: 'Self-taught',
+    period: '2023 — 2024',
+    summary:
+      'Exploring software development across immersive technologies and modern web applications, turning ideas into hands-on projects.',
+    highlights: [
+      'Built interactive AR/VR experiences using Unity, Unreal Engine, and Vuforia',
+      'Mastered React, TypeScript, and the modern frontend toolchain',
+      
+    ],
+  },
+  {
+    role: 'Frontend Developer',
+    org: 'Project Teams',
+    period: '2024 — 2025',
+    summary:
+      'Built core interfaces for academic and internal tools, collaborating across design and backend.',
+    highlights: [
+      'Led frontend development for the JIT Permigo / Student Management System and Alumni Portal',
+      'Introduced reusable component libraries to speed delivery',
+    ],
+  },
   {
     role: 'Freelance Frontend Developer',
     org: 'Independent',
@@ -228,35 +283,13 @@ export const experiences: Experience[] = [
       'Owned design-to-deploy workflow for each engagement',
     ],
   },
-  {
-    role: 'Frontend Developer',
-    org: 'Project Teams',
-    period: '2024 — 2025',
-    summary:
-      'Built core interfaces for academic and internal tools, collaborating across design and backend.',
-    highlights: [
-      'Led frontend for the School Management System and Alumni Portal',
-      'Introduced reusable component libraries to speed delivery',
-    ],
-  },
-  {
-    role: 'Student Developer',
-    org: 'Self-taught',
-    period: '2023 — 2024',
-    summary:
-      'Began the journey — learning the web from the ground up and shipping first projects.',
-    highlights: [
-      'Mastered React, TypeScript, and the modern frontend toolchain',
-      'Built and broke dozens of projects to learn the craft',
-    ],
-  },
 ];
 
 export const achievements: Achievement[] = [
-  { title: 'Frontend Web Development', issuer: 'Coursera', year: '2026' },
-  { title: 'Advanced React Patterns', issuer: 'Meta', year: '2025' },
-  { title: 'UI/UX Design Fundamentals', issuer: 'Google', year: '2025' },
-  { title: 'Python for Everybody', issuer: 'University of Michigan', year: '2024' },
+  { title: 'Frontend Web Development', issuer: 'Jeppiaar Institute of Technology', year: '2026' },
+  { title: 'Game Development', prize:'2nd prize', issuer: 'Kalasalingam University', year: '2025' },
+  { title: 'UI/UX Design Fundamentals', issuer: 'ScholarPeak', year: '2025' },
+  { title: 'Python for Everybody', issuer: 'Infosys Springboard', year: '2024' },
 ];
 
 export const navLinks = [
