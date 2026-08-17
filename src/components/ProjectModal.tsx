@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { X, ExternalLink, Github, ArrowRight } from 'lucide-react';
 import type { Project } from '@/data/content';
 
@@ -107,22 +107,19 @@ export function ProjectModal({ project, onClose }: Props) {
               </div>
 
               <div className="mt-10 flex flex-wrap gap-3">
-                <a
+                <GlitchButton 
                   href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-ink-base text-sm font-medium hover:bg-accent hover:text-white transition-colors"
-                >
-                  Live Demo <ExternalLink size={16} />
-                </a>
-                <a
+                  label="Live Demo"
+                  icon={<ExternalLink size={16} />}
+                  errorText="NOT YET DEPLOYED"
+                  primary={true}
+                />
+                <GlitchButton 
                   href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl glass text-sm font-medium hover:border-white/20 transition-colors"
-                >
-                  GitHub <Github size={16} />
-                </a>
+                  label="GitHub"
+                  icon={<Github size={16} />}
+                  errorText="PROJECT UNDER CONSTRUCTION"
+                />
                 <button
                   onClick={onClose}
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm text-muted hover:text-white transition-colors ml-auto relative z-50"
@@ -156,5 +153,99 @@ function Detail({
       </h4>
       <p className="text-base leading-relaxed text-white/90">{body}</p>
     </div>
+  );
+}
+
+function GlitchButton({
+  href,
+  icon,
+  label,
+  errorText,
+  primary
+}: {
+  href?: string;
+  icon: React.ReactNode;
+  label: string;
+  errorText: string;
+  primary?: boolean;
+}) {
+  const [isError, setIsError] = useState(false);
+  const [scrambleText, setScrambleText] = useState('');
+
+  const isValid = href && href !== '#';
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (!isValid) {
+      e.preventDefault();
+      if (isError) return;
+      setIsError(true);
+      
+      let iterations = 0;
+      const chars = "!<>-_\\/[]{}—=+*^?#________";
+      const interval = setInterval(() => {
+        setScrambleText(errorText.split("").map((letter, index) => {
+          if(index < iterations) {
+            return errorText[index];
+          }
+          return chars[Math.floor(Math.random() * chars.length)]
+        }).join(""));
+        
+        if(iterations >= errorText.length){
+          clearInterval(interval);
+        }
+        iterations += 1 / 3;
+      }, 30);
+
+      setTimeout(() => {
+        setIsError(false);
+        clearInterval(interval);
+      }, 2500);
+    }
+  };
+
+  return (
+    <a
+      href={isValid ? href : '#'}
+      target={isValid ? '_blank' : undefined}
+      rel="noopener noreferrer"
+      onClick={handleClick}
+      className={`relative inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all w-[260px] overflow-hidden ${
+        isError
+          ? 'bg-red-500/10 text-red-500 border border-red-500/50'
+          : primary
+          ? 'bg-white text-ink-base hover:bg-accent hover:text-white'
+          : 'glass text-white hover:border-white/20'
+      }`}
+    >
+      {isError ? (
+        <motion.span
+          initial={{ opacity: 0, x: -5 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="font-mono font-bold tracking-wider text-[11px] sm:text-xs uppercase flex items-center gap-2 z-10"
+        >
+          {/* subtle glitch animation wrapper */}
+          <motion.span
+            animate={{ x: [-2, 2, -2, 0] }}
+            transition={{ duration: 0.2, repeat: 3 }}
+          >
+            {scrambleText}
+          </motion.span>
+        </motion.span>
+      ) : (
+        <span className="flex items-center gap-2 z-10">
+          {label} {icon}
+        </span>
+      )}
+      
+      {/* Red flash effect */}
+      {isError && (
+         <motion.div
+           className="absolute inset-0 bg-red-500/20"
+           initial={{ opacity: 1 }}
+           animate={{ opacity: 0 }}
+           transition={{ duration: 0.5, ease: 'easeOut' }}
+         />
+      )}
+    </a>
   );
 }

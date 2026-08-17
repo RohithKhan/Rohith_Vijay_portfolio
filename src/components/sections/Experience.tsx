@@ -49,7 +49,8 @@ export function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.8, delay: i * 0.05, ease: easeOutExpo }}
-              className={`relative pl-10 sm:pl-0 sm:grid sm:grid-cols-2 sm:gap-12 ${i % 2 === 0 ? 'sm:[direction:rtl]' : 'sm:[direction:rtl]'
+              className={`relative pl-10 sm:pl-0 sm:grid sm:grid-cols-2 sm:gap-12 ${
+                i % 2 === 0 ? 'sm:[direction:rtl]' : 'sm:[direction:rtl]'
                 }`}
             >
               {/* Node */}

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Github } from 'lucide-react';
 import type { Project } from '@/data/content';
 import { TiltCard } from '@/components/ui/TiltCard';
+import { ImpactMetric } from '@/components/ui/ImpactMetric';
 
 type Props = {
   project: Project;
@@ -96,18 +97,28 @@ export function ProjectCard({ project, index, onOpen }: Props) {
 
             <div className="absolute inset-0 ring-1 ring-inset ring-white/5 group-hover:ring-white/15 transition-all duration-500" />
 
-            <div className="absolute top-4 left-4 flex items-center gap-2">
+            <div className="absolute top-4 left-4 flex items-center gap-2 z-20">
               <span className="text-xs tracking-[0.2em] uppercase text-white/70 px-2.5 py-1 rounded-full glass">
                 {project.year}
               </span>
             </div>
-            <div className="absolute bottom-4 right-4 grid place-items-center w-10 h-10 rounded-full glass transition-all duration-300 group-hover:bg-white group-hover:text-ink-base">
+            {project.id === 'jit-permigo' && (
+              <div className="absolute top-4 right-4 z-30">
+                <ImpactMetric 
+                  value="700+" 
+                  label="USERS" 
+                  caption="LIVE IMPACT" 
+                  accentColor={project.accent} 
+                />
+              </div>
+            )}
+            <div className="absolute bottom-4 right-4 grid place-items-center w-10 h-10 rounded-full glass transition-all duration-300 group-hover:bg-white group-hover:text-ink-base z-20">
               <ArrowUpRight
                 size={18}
                 className="transition-transform duration-300 group-hover:rotate-45"
               />
             </div>
-            <span className="absolute bottom-2 left-4 sm:left-5 text-6xl sm:text-[5rem] leading-none font-bold text-white/[0.04] select-none">
+            <span className="absolute bottom-2 left-4 sm:left-5 text-6xl sm:text-[5rem] leading-none font-bold text-white/[0.04] select-none pointer-events-none z-10">
               {String(index + 1).padStart(2, '0')}
             </span>
           </div>

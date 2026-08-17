@@ -15,7 +15,7 @@ export function CustomCursor() {
 
   // Spring physics for smooth movement
   // High stiffness + low mass = very low latency, smooth interpolation
-  const springConfig = { stiffness: 1000, damping: 50, mass: 0.15 };
+  const springConfig = { stiffness: 200000, damping: 200, mass: 0.15 };
   const cursorX = useSpring(x, springConfig);
   const cursorY = useSpring(y, springConfig);
 

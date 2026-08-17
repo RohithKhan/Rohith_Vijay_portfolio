@@ -11,7 +11,7 @@ export function About() {
         eyebrow="About"
         title={
           <>
-            A developer who treats the <span className="text-gradient-accent">browser as a canvas</span>.
+            A developer who turns code into <span className="text-gradient-accent">interactive</span> and immersive digital experiences.
           </>
         }
         description="I'm Rohith Vijay, a Engineer obsessed with the small details — the easing curve, the millisecond, the empty state. I build interfaces that feel considered, fast, and alive."

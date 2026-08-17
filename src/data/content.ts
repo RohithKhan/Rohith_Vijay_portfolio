@@ -36,8 +36,8 @@ export type Project = {
   accent: string;
   backgroundImage?: string;
   video?: string;
-  liveUrl: string;
-  githubUrl: string;
+  liveUrl?: string;
+  githubUrl?: string;
   underDevelopment?: boolean;
 };
 
@@ -135,7 +135,7 @@ export const projects: Project[] = [
     accent: '#3B82F6',
     backgroundImage: '',
     video: 'smsvideo.mp4',
-    liveUrl: '#',
+    // liveUrl: '#',
     githubUrl: 'https://github.com/RohithKhan/SMS.git',
   },
   {
@@ -157,7 +157,7 @@ export const projects: Project[] = [
     accent: '#22C55E',
     backgroundImage: '/permigoss.png',
     liveUrl: 'https://www.jit.college/',
-    githubUrl: '#',
+    // githubUrl: '#',
   },
   {
     id: 'jarvis-ai',
@@ -177,8 +177,8 @@ export const projects: Project[] = [
       'Created a functional personal AI assistant that demonstrates how lightweight language models can be integrated with voice interaction, contextual memory, and real-world assistant workflows.',
     accent: '#60A5FA',
     backgroundImage: '',
-    liveUrl: '#',
-    githubUrl: '#',
+    // liveUrl: '',
+    // githubUrl: '',
     underDevelopment: true,
   },
   {
@@ -200,8 +200,8 @@ export const projects: Project[] = [
     accent: '#22C55E',
     backgroundImage: '',
     video: '/agriculture.mp4',
-    liveUrl: '#',
-    githubUrl: '#',
+    // liveUrl: '#',
+    // githubUrl: '#',
     underDevelopment: true,
   },
   {
@@ -244,8 +244,8 @@ export const projects: Project[] = [
   accent: '#8B5CF6',
   backgroundImage: '',
   video:'arvid.mp4',
-  liveUrl: '#',
-  githubUrl: '#',
+  // liveUrl: '#',
+  // githubUrl: '#',
 },
 ];
 

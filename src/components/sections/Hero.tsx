@@ -124,7 +124,7 @@ export function Hero() {
               transition={{ delay: 0.95, duration: 0.8, ease }}
               className="text-base sm:text-lg text-muted max-w-md leading-relaxed mb-8"
             >
-              I build modern, responsive and user-friendly web applications that deliver exceptional digital experiences.
+              I craft modern web applications and immersive AR/VR experiences, combining thoughtful design, interactive technology, and seamless user experiences to bring ideas to life.
             </motion.p>
 
             {/* CTAs */}
