@@ -8,45 +8,42 @@ type LoaderProps = {
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const loadingStates = [
-  'INITIALIZING PORTFOLIO...',
-  'LOADING EXPERIENCE...',
-  'LOADING PROJECTS...',
-  'LOADING INTERFACE...',
-  'SYSTEM READY',
+  'INITIALIZING DESIGN SYSTEM',
+  'LOADING COMPONENTS',
+  'COMPILING EXPERIENCE',
+  'READY',
 ];
 
 export function Loader({ onComplete }: LoaderProps) {
   const [progress, setProgress] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [statusIndex, setStatusIndex] = useState(0);
+  const [complete, setComplete] = useState(false);
 
   useEffect(() => {
     let raf = 0;
     const start = performance.now();
-    // Use a slightly faster duration so it doesn't artificially delay, but allows time to see the polish.
-    const duration = 2200; 
+    const duration = 2800; // Slightly longer for the narrative to play out elegantly
 
     const tick = (now: number) => {
       const p = Math.min(1, (now - start) / duration);
-      // Premium easing curve (easeOutExpo like)
+      // Smooth easing for the progress number
       const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
       
       const currentProgress = Math.round(eased * 100);
       setProgress(currentProgress);
 
-      // Determine status text based on progress
       if (currentProgress < 25) setStatusIndex(0);
-      else if (currentProgress < 50) setStatusIndex(1);
-      else if (currentProgress < 75) setStatusIndex(2);
-      else if (currentProgress < 100) setStatusIndex(3);
-      else setStatusIndex(4);
+      else if (currentProgress < 60) setStatusIndex(1);
+      else if (currentProgress < 95) setStatusIndex(2);
+      else setStatusIndex(3);
 
       if (p < 1) {
         raf = requestAnimationFrame(tick);
       } else {
         setIsReady(true);
-        // Wait 600ms before triggering the exit transition so the user can read "SYSTEM READY" and see the final glow
-        setTimeout(() => setComplete(true), 600);
+        // Wait briefly at 100% before triggering the exit transition
+        setTimeout(() => setComplete(true), 400); 
       }
     };
     raf = requestAnimationFrame(tick);
@@ -54,209 +51,200 @@ export function Loader({ onComplete }: LoaderProps) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  const [complete, setComplete] = useState(false);
-
-  // Trigger onComplete after exit animation finishes
-  const handleExitComplete = () => {
-    onComplete();
-  };
-
   return (
-    <AnimatePresence onExitComplete={handleExitComplete}>
+    <AnimatePresence onExitComplete={onComplete}>
       {!complete && (
         <motion.div
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-[#030712] overflow-hidden"
-          exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.6, ease } }}
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center overflow-hidden pointer-events-none"
         >
-          {/* BACKGROUND & EFFECTS */}
-          {/* Ambient Glow */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vmax] h-[50vmax] rounded-full blur-[100px] pointer-events-none"
-            style={{ background: 'radial-gradient(circle, rgba(14, 165, 233, 0.08), transparent 60%)' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isReady ? 1 : 0.6, scale: isReady ? 1.2 : 1 }}
-            transition={{ duration: 1.5, ease }}
+          {/* SOLID BACKGROUND - Fades out to reveal the site seamlessly */}
+          <motion.div 
+            className="absolute inset-0 bg-[#0B0B0B]"
+            animate={{ opacity: isReady ? 0 : 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease }}
           />
 
-          {/* Faint Grid */}
-          {/* <div 
-            className="absolute inset-0 opacity-10 pointer-events-none"
+          {/* GRID (DESIGN LAYER) */}
+          <motion.div 
+            className="absolute inset-0 opacity-0 mix-blend-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isReady ? 0 : 0.15 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease }}
             style={{
-              backgroundImage: 'linear-gradient(to right, rgba(59,130,246,0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(59,130,246,0.3) 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(to right, rgba(96,165,250,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(96,165,250,0.1) 1px, transparent 1px)',
               backgroundSize: '40px 40px',
-              maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
-              WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
+              maskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
+              WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
             }}
-          /> */}
+          />
 
-          {/* Minimal Particles */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40 mix-blend-screen">
-            {[...Array(12)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-0.5 h-0.5 rounded-full bg-blue-400"
-                style={{
-                  top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`,
-                  boxShadow: '0 0 6px 1px rgba(96,165,250,0.6)'
-                }}
-                animate={{
-                  y: [0, -40],
-                  opacity: [0, 0.8, 0],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  ease: "linear",
-                  delay: Math.random() * 2
-                }}
-              />
-            ))}
-          </div>
+          {/* DESIGN & CODE LAYER FRAGMENTS */}
+          <motion.div 
+            className="absolute inset-0"
+            animate={{ opacity: isReady ? 0 : 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Developer Tags */}
+            <motion.div 
+              className="absolute top-[25%] left-[20%] font-mono text-[9px] text-blue-400/20 tracking-wider"
+              initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6 }}
+            >
+              {"{ init() }"}
+            </motion.div>
+            <motion.div 
+              className="absolute bottom-[35%] right-[20%] font-mono text-[9px] text-blue-400/20 tracking-wider"
+              initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.8 }}
+            >
+              {"<Experience />"}
+            </motion.div>
+            <motion.div 
+              className="absolute top-[65%] left-[25%] font-mono text-[9px] text-blue-400/10 tracking-wider"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
+            >
+              {"const layout = true;"}
+            </motion.div>
+            <motion.div 
+              className="absolute top-[35%] right-[25%] font-mono text-[9px] text-blue-400/10 tracking-wider"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}
+            >
+              {"// render"}
+            </motion.div>
 
+            {/* Design Crosshairs */}
+            <motion.div 
+              className="absolute top-[30%] right-[30%] flex items-center justify-center w-4 h-4 opacity-30"
+              initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 0.4, scale: 1 }} transition={{ delay: 0.5 }}
+            >
+              <div className="absolute w-full h-[1px] bg-blue-400/50" />
+              <div className="absolute h-full w-[1px] bg-blue-400/50" />
+            </motion.div>
+            <motion.div 
+              className="absolute bottom-[30%] left-[30%] flex items-center justify-center w-4 h-4 opacity-30"
+              initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 0.4, scale: 1 }} transition={{ delay: 0.9 }}
+            >
+              <div className="absolute w-full h-[1px] bg-blue-400/50" />
+              <div className="absolute h-full w-[1px] bg-blue-400/50" />
+            </motion.div>
 
-          {/* HUD CORNER ELEMENTS */}
-          <div className="hidden sm:block absolute inset-6 pointer-events-none">
-            {/* Top Left */}
-            <div className="absolute top-0 left-0 flex items-center gap-3">
-              <div className="w-4 h-4 border-t border-l border-blue-500/40" />
-              <span className="text-[9px] font-mono tracking-widest text-blue-400/60 uppercase">SYS // 001</span>
-            </div>
-            {/* Top Right */}
-            <div className="absolute top-0 right-0 flex items-center gap-3">
-              <span className="text-[9px] font-mono tracking-widest text-blue-400/60 uppercase">ONLINE</span>
-              <div className="w-4 h-4 border-t border-r border-blue-500/40" />
-            </div>
-            {/* Bottom Left */}
-            <div className="absolute bottom-0 left-0 flex items-center gap-3">
-              <div className="w-4 h-4 border-b border-l border-blue-500/40" />
-              <span className="text-[9px] font-mono tracking-widest text-blue-400/60 uppercase">INITIALIZING CORE...</span>
-            </div>
-            {/* Bottom Right */}
-            <div className="absolute bottom-0 right-0 flex items-center gap-3">
-              <span className="text-[9px] font-mono tracking-widest text-blue-400/60 uppercase">V.1.0 // ROHITH</span>
-              <div className="w-4 h-4 border-b border-r border-blue-500/40" />
-            </div>
-          </div>
+            {/* Animated Design Cursor */}
+            <motion.div
+              className="absolute z-50 pointer-events-none"
+              initial={{ x: '10vw', y: '70vh', opacity: 0 }}
+              animate={isReady ? { opacity: 0 } : { 
+                x: ['10vw', '35vw', '50vw', '55vw'], 
+                y: ['70vh', '25vh', '50vh', '45vh'],
+                opacity: [0, 1, 1, 0]
+              }}
+              transition={{
+                duration: 2.4,
+                times: [0, 0.4, 0.7, 1],
+                ease: "easeInOut"
+              }}
+            >
+              {/* Figma/Mac style cursor */}
+              <svg width="18" height="22" viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
+                <path d="M1.08272 0.706132C0.609503 0.231267 -0.203772 0.569477 -0.197992 1.23963L0.264771 19.9882C0.270634 20.6687 1.09241 21.0026 1.55403 20.5118L5.61715 16.1917C5.74836 16.0522 5.93282 15.9734 6.12457 15.9734H14.1293C14.8016 15.9734 15.1378 15.1583 14.6627 14.6815L1.08272 0.706132Z" fill="#60a5fa" stroke="#000000" strokeWidth="1.5" strokeLinejoin="round"/>
+              </svg>
+            </motion.div>
+          </motion.div>
 
-
-          {/* MAIN CENTER CONTENT */}
-          <div className="relative z-10 flex flex-col items-center">
+          {/* CENTRAL CONSTRUCTION (Signature Animation) */}
+          <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-[500px] h-[200px] px-6">
             
-            {/* Logo Wrapper */}
-            <motion.div className="relative mb-12 flex items-center justify-center">
-              {/* Subtle glass background behind logo that forms */}
-              <motion.div 
-                className="absolute inset-0 rounded-2xl bg-white/[0.02] border border-white/[0.05]"
-                style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.2, ease }}
-              />
+            {/* The transforming signature element */}
+            <motion.div
+              className="absolute border border-blue-400/[0.08] bg-blue-400/[0.01] backdrop-blur-sm"
+              initial={{ width: 0, height: 1, opacity: 0 }}
+              animate={isReady ? {
+                width: '100vw',
+                height: '100vh',
+                borderWidth: 0,
+                backgroundColor: 'rgba(96,165,250,0)',
+                backdropFilter: 'blur(0px)',
+              } : {
+                width: ["0%", "80%", "2px", "100%"],
+                height: [1, 1, 24, 160],
+                opacity: [0, 1, 1, 1],
+                borderWidth: [0, 0, 0, 1],
+                backgroundColor: [
+                  "rgba(35, 130, 247, 0.4)", 
+                  "rgba(61, 147, 252, 0.4)", 
+                  "rgba(14, 115, 238, 0.8)", 
+                  "rgba(96,165,250,0.02)"
+                ]
+              }}
+              transition={isReady ? {
+                duration: 0.8, ease
+              } : {
+                duration: 2.2,
+                times: [0, 0.25, 0.45, 1],
+                ease: [0.16, 1, 0.3, 1]
+              }}
+              exit={{ opacity: 0, transition: { duration: 0.4 } }}
+              style={{ originX: 0.5, originY: 0.5 }}
+            />
 
-              {/* The V/R Logo */}
-              <motion.div
-                className="relative w-20 h-20 flex items-center justify-center text-3xl font-bold tracking-tighter"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, ease }}
-              >
-                {/* Thin outline stroke effect */}
-                <svg className="absolute inset-0 w-full h-full drop-shadow-[0_0_12px_rgba(59,130,246,0.5)]">
-                  <motion.rect
-                    x="4" y="4" width="72" height="72" rx="14"
-                    fill="none"
-                    stroke="rgba(59,130,246,0.6)"
-                    strokeWidth="1.5"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{ duration: 1.2, ease: "easeInOut" }}
-                  />
-                </svg>
-
-                {/* Sweep light effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-400/30 to-transparent -skew-x-12"
-                  initial={{ x: '-100%', opacity: 0 }}
-                  animate={{ x: '100%', opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.4, ease }}
-                  style={{ mixBlendMode: 'screen' }}
-                />
-
-                <span className="relative z-10 text-white/90 bg-clip-text">VR</span>
-
-                {/* Final bright glow when ready */}
-                <motion.div
-                  className="absolute inset-0 rounded-2xl bg-blue-500/20 blur-xl"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: isReady ? 1 : 0 }}
-                  transition={{ duration: 0.4 }}
-                />
-              </motion.div>
-            </motion.div>
-
-            {/* Profile Identity */}
+            {/* Inner Content Reveal */}
             <motion.div 
-              className="flex flex-col items-center gap-2 mb-16 text-center"
+              className="relative flex flex-col items-center justify-center pointer-events-none"
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease }}
+              animate={{ opacity: isReady ? 0 : 1, y: isReady ? -20 : 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, delay: isReady ? 0 : 1.2, ease }}
             >
-              <h1 className="text-sm tracking-[0.4em] uppercase text-white/90 font-medium">
-                V. Rohith
+              <h1 className="text-2xl sm:text-3xl tracking-[0.4em] uppercase text-blue-400/90 font-light mb-3">
+                Rohith
               </h1>
-              <h2 className="text-[10px] tracking-[0.2em] uppercase text-blue-400/70 font-mono">
-                Developer • Designer • Problem Solver
-              </h2>
-            </motion.div>
-
-            {/* Progress Section */}
-            <motion.div 
-              className="w-full max-w-[280px] flex flex-col gap-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6, ease }}
-            >
-              {/* Dynamic Status Text */}
-              <div className="flex justify-between items-end px-1">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={statusIndex}
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -4 }}
-                    transition={{ duration: 0.3 }}
-                    className={`text-[9px] font-mono tracking-widest uppercase ${isReady ? 'text-green-400' : 'text-blue-400/80'}`}
-                  >
-                    {loadingStates[statusIndex]}
-                  </motion.span>
-                </AnimatePresence>
-                <span className="text-[10px] font-mono tracking-wider text-white/60">
-                  {progress}%
-                </span>
-              </div>
-
-              {/* Advanced Progress Line */}
-              <div className="relative w-full h-[2px] rounded-full overflow-hidden bg-white/[0.05] border border-white/[0.02]">
-                <motion.div
-                  className="absolute inset-y-0 left-0 bg-blue-500 rounded-full"
-                  style={{ width: `${progress}%` }}
-                />
-                
-                {/* Leading edge light particle */}
-                <motion.div
-                  className="absolute inset-y-0 w-8 bg-gradient-to-r from-transparent to-white rounded-full blur-[1px]"
-                  style={{ left: `${progress}%`, x: '-100%' }}
-                />
-                {/* Glow for the track */}
-                <motion.div
-                  className="absolute inset-y-0 left-0 bg-blue-400/40 blur-sm rounded-full"
-                  style={{ width: `${progress}%` }}
-                />
+              <div className="flex items-center gap-3 text-[9px] sm:text-[10px] tracking-[0.3em] font-mono text-blue-400/50">
+                <span>DEVELOPER</span>
+                <motion.span 
+                  className="text-blue-400/80"
+                  animate={{ rotate: 90 }}
+                  transition={{ duration: 1.5, delay: 1.5, ease: "easeInOut" }}
+                >×</motion.span>
+                <span>DESIGNER</span>
               </div>
             </motion.div>
 
           </div>
+
+          {/* PROGRESS INDICATOR */}
+          <motion.div 
+            className="absolute bottom-12 w-full max-w-[300px] px-8 flex flex-col gap-3 z-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isReady ? 0 : 1, y: isReady ? 10 : 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, delay: 1, ease }}
+          >
+            <div className="flex justify-between items-end px-1">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={statusIndex}
+                  initial={{ opacity: 0, x: -4 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 4 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-[8px] sm:text-[9px] font-mono tracking-widest uppercase text-blue-400/40"
+                >
+                  {loadingStates[statusIndex]}
+                </motion.span>
+              </AnimatePresence>
+              <span className="text-[9px] sm:text-[10px] font-mono tracking-widest text-blue-400/80">
+                {String(progress).padStart(2, '0')}%
+              </span>
+            </div>
+            {/* Minimal Progress Bar */}
+            <div className="relative w-full h-[1px] bg-blue-400/10 overflow-hidden">
+              <motion.div
+                className="absolute inset-y-0 left-0 bg-blue-400/60"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </motion.div>
+          
         </motion.div>
       )}
     </AnimatePresence>
