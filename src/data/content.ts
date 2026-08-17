@@ -18,6 +18,7 @@ import {
   SiGooglegemini,
   SiBlender,
   SiClaude,
+  SiFigma,
 } from 'react-icons/si';
 import { TbApi, TbPalette, TbSparkles } from 'react-icons/tb';
 
@@ -97,6 +98,7 @@ export const skills: Skill[] = [
   { name: 'Git', icon: SiGit, level: 88, group: 'Backend' },
   { name: 'GitHub', icon: SiGithub, level: 90, group: 'Backend' },
   { name: 'UI / UX', icon: TbPalette, level: 84, group: 'UI Design' },
+  { name: 'Figma', icon: SiFigma, level: 84, group: 'UI Design' },
   { name: 'Claude', icon: SiClaude, level: 85, group: 'AI Tools' },
   { name: 'Cursor', icon: SiCursor, level: 95, group: 'AI Tools' },
   { name: 'Gemini', icon: SiGooglegemini, level: 84, group: 'AI Tools' },
