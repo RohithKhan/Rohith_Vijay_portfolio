@@ -29,13 +29,13 @@ export function Seo() {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
-      <meta property="og:image" content="https://bolt.new/static/og_default.png" />
+      <meta property="og:image" content="portfolio_preview.png" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://bolt.new/static/og_default.png" />
+      <meta name="twitter:image" content="portfolio_preview.png" />
 
       {/* JSON-LD */}
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
