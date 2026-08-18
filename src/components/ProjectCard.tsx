@@ -107,6 +107,26 @@ export function ProjectCard({ project, index, onOpen }: Props) {
                 <ImpactMetric 
                   value="700+" 
                   label="USERS" 
+                  caption="LIVE & Scalable" 
+                  accentColor={project.accent} 
+                />
+              </div>
+            )}
+              {project.id === 'jit-digital-notice-board' && (
+              <div className="absolute top-4 right-4 z-30">
+                <ImpactMetric 
+                  value="1200+" 
+                  label="USERS" 
+                  caption="LIVE IMPACT" 
+                  accentColor={project.accent} 
+                />
+              </div>
+            )}
+            {project.id === 'alumni-portal' && (
+              <div className="absolute top-4 right-4 z-30">
+                <ImpactMetric 
+                  value="200+" 
+                  label="USERS" 
                   caption="LIVE IMPACT" 
                   accentColor={project.accent} 
                 />

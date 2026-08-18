@@ -77,7 +77,7 @@ export const profile = {
 
 export const stats = [
   { label: 'Years Learning', value: 4, suffix: '+' },
-  { label: 'Projects Built', value: 4, suffix: '+' },
+  { label: 'Projects Built', value: 6, suffix: '+' },
   { label: 'Technologies', value: 15, suffix: '+' },
   { label: 'Late Nights', value: 999, suffix: '', display: '∞' },
 ];
@@ -159,6 +159,41 @@ export const projects: Project[] = [
     liveUrl: 'https://www.jit.college/',
     // githubUrl: '#',
   },
+  {
+  id: 'jit-digital-notice-board',
+
+  name: 'JIT Digital Notice Board',
+
+  tagline: 'A smarter way to publish, discover, and access campus notices.',
+
+  year: '2026',
+
+  overview:
+    'A digital circular and notice management platform built for Jeppiaar Institute of Technology, enabling administrators to publish department-specific notices while giving students instant access through dedicated digital notice boards and QR codes.',
+
+  problem:
+    'Traditional college notice boards make it difficult for students to access important announcements quickly, while physical notices are limited by location, visibility, and manual distribution across departments.',
+
+  solution:
+    'Built a centralized digital notice system where administrators can create and manage circulars, while each department has its own dedicated notice board that students can access digitally through QR codes placed around the campus.',
+
+  stack: ['React', 'Vite', 'TypeScript', 'React Router', 'Vanilla CSS', 'REST API'],
+
+  challenges:
+    'Designing a scalable notice distribution workflow that separates administrative management from student-facing department boards, while keeping the experience fast, mobile-first, easy to navigate, and suitable for QR-based campus access.',
+
+  impact:
+    'Created a scalable digital notice infrastructure for JIT that currently supports department-wise notice distribution and provides students with a faster, more accessible alternative to traditional physical notice boards.',
+
+  accent: '#60A5FA',
+
+  backgroundImage: '/noticeboard.png',
+
+   liveUrl: 'https://notice.jit.college',
+   githubUrl: 'https://github.com/mohanraj221210/jit-qr.git',
+
+  underDevelopment: false,
+},
   {
     id: 'jarvis-ai',
     name: 'Jarvis AI Assistant',
