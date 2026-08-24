@@ -255,7 +255,7 @@ export const projects: Project[] = [
       'Designing a search experience that felt fast across thousands of profiles required thoughtful indexing and debouncing.',
     impact:
       'Reignited alumni engagement and became the go-to place for class reunions.',
-    accent: '#3B82F6',
+    accent: '#8B5CF6',
     backgroundImage: '/alumni.png',
     liveUrl: 'https://aluminifrontend-six.vercel.app/',
     githubUrl: 'https://github.com/RohithKhan/Aluminifrontend.git',
@@ -276,7 +276,7 @@ export const projects: Project[] = [
     'Achieving reliable target detection and consistent virtual object placement while maintaining smooth AR tracking across different real-world environments.',
   impact:
     'Gained hands-on experience in AR development, spatial tracking, target detection, and real-world 3D object interaction.',
-  accent: '#8B5CF6',
+  accent: '#0e98dd',
   backgroundImage: '',
   video:'arvid.mp4',
   // liveUrl: '#',

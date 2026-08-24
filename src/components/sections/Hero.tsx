@@ -315,7 +315,7 @@ export function Hero() {
                 style-glow="true"
               >
                 <img
-                  src="/coder.png"
+                  src="/coder2.jpeg"
                   alt={`${profile.name} — ${profile.role}`}
                   className="w-full h-full object-cover object-top"
                   loading="eager"
