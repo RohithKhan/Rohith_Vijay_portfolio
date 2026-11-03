@@ -200,7 +200,9 @@ function OrbitalRing({ radius, duration, tilt = 0, reverse = false }: { radius: 
   );
 }
 
-function SpatialNode({ node, index }: { node: any, index: number }) {
+type SpatialNodeType = typeof NODES[number];
+
+function SpatialNode({ node, index }: { node: SpatialNodeType, index: number }) {
   const [isHovered, setIsHovered] = useState(false);
   
   // Calculate polar coordinates manually

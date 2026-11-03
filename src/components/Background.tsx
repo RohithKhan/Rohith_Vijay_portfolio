@@ -35,7 +35,6 @@ export function Background() {
   const { scrollY } = useScroll();
   // Smooth scroll translation for a glass-like depth effect
   const smoothScrollY = useSpring(scrollY, { stiffness: 60, damping: 20 });
-  const gridY = useTransform(smoothScrollY, [0, 5000], [0, 500]);
   const particleParallaxY = useTransform(smoothScrollY, [0, 5000], [0, 200]);
 
   useEffect(() => {

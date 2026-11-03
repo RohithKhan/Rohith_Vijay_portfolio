@@ -11,10 +11,12 @@ import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { SectionDivider } from '@/components/ui/SectionDivider';
 import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
+import { Services } from '@/components/sections/Services';
 import { Skills } from '@/components/sections/Skills';
 import { Projects } from '@/components/sections/Projects';
 import { Experience } from '@/components/sections/Experience';
 import { Achievements } from '@/components/sections/Achievements';
+import { Faq } from '@/components/sections/Faq';
 import { Contact } from '@/components/sections/Contact';
 import { Footer } from '@/components/sections/Footer';
 import { useLenis } from '@/hooks/useLenis';
@@ -44,6 +46,8 @@ function App() {
           <SectionDivider />
           <About />
           <SectionDivider />
+          <Services />
+          <SectionDivider />
           <Skills />
           <SectionDivider />
           <Projects />
@@ -51,6 +55,8 @@ function App() {
           <Experience />
           <SectionDivider />
           <Achievements />
+          <SectionDivider />
+          <Faq />
           <SectionDivider />
           <Contact />
         </main>

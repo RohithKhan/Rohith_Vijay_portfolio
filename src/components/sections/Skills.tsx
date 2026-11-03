@@ -11,13 +11,13 @@ export function Skills() {
   return (
     <section id="skills" className="relative py-28 sm:py-36 px-6 max-w-6xl mx-auto">
       <SectionHeading
-        eyebrow="Skills"
+        eyebrow="Skills & Toolkit"
         title={
           <>
-            Tools I reach for <span className="text-gradient-accent">every day</span>.
+            Technical Skills &amp; <span className="text-gradient-accent">Development Toolkit</span>.
           </>
         }
-        description="A focused toolkit honed across projects — from interface craft to the infrastructure that supports it."
+        description="A specialized toolkit honed across full-stack MERN engineering, technical SEO, and modern web application development."
       />
 
       {/* Group selector */}

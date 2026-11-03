@@ -2,19 +2,19 @@ import { motion, useInView, useMotionValue, useSpring, useTransform } from 'fram
 import { useEffect, useRef } from 'react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { stats } from '@/data/content';
-import { blurUp, stagger, easeOutExpo } from '@/lib/motion';
+import { blurUp, stagger } from '@/lib/motion';
 
 export function About() {
   return (
     <section id="about" className="relative py-28 sm:py-36 px-6 max-w-6xl mx-auto">
       <SectionHeading
-        eyebrow="About"
+        eyebrow="About Rohith Vijay"
         title={
           <>
-            A developer who turns code into <span className="text-gradient-accent">interactive</span> and immersive digital experiences.
+            Engineering web solutions with <span className="text-gradient-accent">clean architecture</span> and search visibility.
           </>
         }
-        description="I'm Rohith Vijay, a Engineer obsessed with the small details — the easing curve, the millisecond, the empty state. I build interfaces that feel considered, fast, and alive."
+        description="I'm Rohith Vijay, a freelance web developer and SEO specialist based in Chennai. I combine modern MERN stack engineering with technical SEO strategies to deliver fast, discoverable, and user-centric web applications."
       />
 
       <div className="mt-16 grid grid-cols-1 lg:grid-cols-5 gap-10">
@@ -27,24 +27,19 @@ export function About() {
           className="lg:col-span-3 space-y-6"
         >
           <motion.p variants={blurUp} className="text-lg text-white/90 leading-relaxed">
-            I started building for the web out of curiosity — a way to make ideas
-            visible. That curiosity became a craft. Today I focus on the frontend
-            layer where design and engineering meet, shaping products that feel
-            effortless to use.
+            Based in Chennai, India, I specialize in full-stack web development and technical search engine optimization. My work bridges the gap between clean code, responsive design, and organic search discoverability — ensuring that every website not only looks premium but also loads instantaneously and ranks on Google.
           </motion.p>
           <motion.p variants={blurUp} className="text-lg text-muted leading-relaxed">
-            My approach is simple: understand the problem, design with intent, and
-            ship with polish. I care about accessibility, performance budgets, and
-            motion that serves the content rather than showing off.
+            Whether engineering role-based MERN stack platforms like the School Management System and JIT Permigo, or optimizing business websites for Core Web Vitals and Schema markup, my engineering approach is rooted in measurable performance, semantic accessibility, and clean maintainable code.
           </motion.p>
 
           {/* Mini timeline */}
           <motion.div variants={stagger(0.1)} className="mt-8 space-y-5">
             {[
-              { year: '2023', text: 'Wrote my first lines of HTML & CSS.' },
-              { year: '2024', text: 'Fell in love with React and component thinking.' },
-              { year: '2025', text: 'Shipped real projects and discovered motion design.' },
-              { year: '2026', text: 'Refining craft — performance, accessibility, polish.' },
+              { year: '2023', text: 'Built first interactive web and AR prototypes in Chennai.' },
+              { year: '2024', text: 'Engineered production campus portals with React & TypeScript.' },
+              { year: '2025', text: 'Shipped full-stack MERN projects & advanced motion interfaces.' },
+              { year: '2026', text: 'Providing freelance web development & technical SEO solutions.' },
             ].map((item) => (
               <motion.div
                 key={item.year}

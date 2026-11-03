@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiDownload, FiArrowUpRight } from 'react-icons/fi';
 import { profile } from '@/data/content';
-import { blurUp, stagger, easeOutExpo } from '@/lib/motion';
+import { blurUp, stagger } from '@/lib/motion';
 import { Magnetic } from '@/components/ui/Magnetic';
 
 const socials = [
@@ -26,30 +26,30 @@ export function Contact() {
 
         <motion.span
           variants={blurUp}
-          className="relative inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs tracking-[0.2em] uppercase text-muted"
+          className="relative inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-xs tracking-[0.2em] uppercase text-muted"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-          Open to opportunities
+          Available for Freelance Projects in Chennai &amp; Worldwide
         </motion.span>
 
         <motion.h2
           variants={blurUp}
           className="relative mt-6 text-4xl sm:text-6xl md:text-7xl font-bold tracking-tightish leading-[1.02]"
         >
-          Let&apos;s build something
+          Let&apos;s build your next
           <br />
-          <span className="text-gradient-accent">worth remembering.</span>
+          <span className="text-gradient-accent">high-performance web project.</span>
         </motion.h2>
 
         <motion.p
           variants={blurUp}
           className="relative mt-6 text-lg text-muted max-w-xl mx-auto"
         >
-          Have a project in mind, or just want to say hello? My inbox is always open.
+          Have a web application, business website, or technical SEO challenge in mind? I provide consultations and end-to-end development for clients in Chennai and across the globe.
         </motion.p>
 
         {/* Email CTA */}
-        <motion.div variants={blurUp} className="relative mt-10 flex justify-center">
+        <motion.div variants={blurUp} className="relative mt-10 flex flex-col items-center justify-center gap-3">
           <Magnetic strength={0.2}>
             <a
               href={`mailto:${profile.email}`}
@@ -63,6 +63,9 @@ export function Contact() {
               />
             </a>
           </Magnetic>
+          <span className="text-xs text-muted/70 tracking-wide">
+            Based in Chennai, Tamil Nadu, India • Available for Local &amp; Remote Engagements
+          </span>
         </motion.div>
 
         {/* Socials */}

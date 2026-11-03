@@ -6,23 +6,23 @@ import {
   SiNextdotjs,
   SiTailwindcss,
   SiNodedotjs,
-  SiGithub,
-  SiUnity,
-  SiUnrealengine
+  SiMongodb,
+  SiUnity
 } from 'react-icons/si';
+import { TbSeo } from 'react-icons/tb';
 import { profile, stats } from '@/data/content';
 import { Button } from '@/components/ui/Button';
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const heroTechs = [
-  { name: 'Augmented Reality', icon: SiUnity },
-  { name: 'Virtual Reality', icon: SiUnrealengine },
-  { name: 'React', icon: SiReact },
+  { name: 'MERN Stack', icon: SiReact },
   { name: 'Next.js', icon: SiNextdotjs },
-  { name: 'Tailwind CSS', icon: SiTailwindcss },
   { name: 'Node.js', icon: SiNodedotjs },
-  { name: 'Git & GitHub', icon: SiGithub },
+  { name: 'MongoDB', icon: SiMongodb },
+  { name: 'Technical SEO', icon: TbSeo },
+  { name: 'Tailwind CSS', icon: SiTailwindcss },
+  { name: 'AR/VR', icon: SiUnity },
 ];
 
 const statIcons = [Rocket, Code2, Zap];
@@ -79,18 +79,16 @@ export function Hero() {
               <span className="text-xs text-muted">Available for select projects</span>
             </motion.div>
 
-            {/* Greeting */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.7, ease }}
-              className="text-sm sm:text-base text-muted mb-3"
-            >
-              Hi, I&apos;m
-            </motion.p>
-
-            {/* Name — primary visual identity */}
-            <h1 className="mb-3">
+            {/* Unified accessible H1 for Branded + Local Commercial Search */}
+            <h1 className="mb-4">
+              <motion.span
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.7, ease }}
+                className="block text-sm sm:text-base text-muted mb-2 font-normal"
+              >
+                Hi, I&apos;m
+              </motion.span>
               <span className="block overflow-hidden">
                 <motion.span
                   className="block text-[clamp(2.8rem,9vw,5rem)] lg:text-[5.2rem] xl:text-[5.8rem] font-bold tracking-ultra leading-[1.02]"
@@ -102,18 +100,27 @@ export function Hero() {
                   <span className="text-gradient">Vijay</span>
                 </motion.span>
               </span>
+              <motion.span
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.75, duration: 0.7, ease }}
+                className="block mt-4 text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-white/90"
+              >
+                Freelance Web Developer &amp;{' '}
+                <span className="text-gradient-accent">SEO Specialist in Chennai</span>
+              </motion.span>
             </h1>
 
             {/* Role badge */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.7, ease }}
+              transition={{ delay: 0.85, duration: 0.7, ease }}
               className="mb-5 sm:mb-6"
             >
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-accent/10 border border-accent/25 text-accent text-xs sm:text-sm font-medium tracking-wide">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                {profile.role}
+                MERN Stack &amp; SEO Specialist — Chennai, India
               </span>
             </motion.div>
 
@@ -124,7 +131,7 @@ export function Hero() {
               transition={{ delay: 0.95, duration: 0.8, ease }}
               className="text-base sm:text-lg text-muted max-w-md leading-relaxed mb-8"
             >
-              I craft modern web applications and immersive AR/VR experiences, combining thoughtful design, interactive technology, and seamless user experiences to bring ideas to life.
+              I build high-performance business websites, scalable MERN stack web applications, and SEO-driven digital platforms in Chennai — turning complex requirements into fast, modern, and search-visible user experiences.
             </motion.p>
 
             {/* CTAs */}
@@ -316,7 +323,9 @@ export function Hero() {
               >
                 <img
                   src="/coder2.jpeg"
-                  alt={`${profile.name} — ${profile.role}`}
+                  alt="Rohith Vijay | Freelance Web Developer and SEO Specialist in Chennai"
+                  width={460}
+                  height={460}
                   className="w-full h-full object-cover object-top"
                   loading="eager"
                 />

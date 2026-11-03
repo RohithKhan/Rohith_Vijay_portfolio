@@ -91,7 +91,8 @@ export function ProjectModal({ project, onClose }: Props) {
                   ) : (
                     <img
                       src={project.backgroundImage}
-                      alt={project.name}
+                      alt={`${project.name} — Web Application Case Study by Rohith Vijay`}
+                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                   )}

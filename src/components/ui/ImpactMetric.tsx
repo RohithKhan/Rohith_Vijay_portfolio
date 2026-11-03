@@ -34,7 +34,7 @@ const AnimatedNumber = ({ value }: { value: string }) => {
     });
 
     return () => controls.stop();
-  }, [value, inView]);
+  }, [value, inView, match]);
 
   if (!match) return <span>{value}</span>;
   return <span ref={ref}>0{match[2]}</span>;

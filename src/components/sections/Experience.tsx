@@ -16,13 +16,14 @@ export function Experience() {
   return (
     <section id="experience" className="relative py-28 sm:py-36 px-6 max-w-6xl mx-auto">
       <SectionHeading
-        eyebrow="Journey"
+        eyebrow="Experience & Background"
         title={
           <>
-            Experience, <span className="text-gradient-accent">in motion</span>.
+            Professional Journey &amp;{' '}
+            <span className="text-gradient-accent">Work Experience</span>.
           </>
         }
-        description="The path from curious beginner to shipping developer — each step shaped the craft."
+        description="A hands-on progression from foundational web engineering to building full-stack enterprise platforms and freelance client solutions."
       />
 
       <div ref={ref} className="mt-16 relative">

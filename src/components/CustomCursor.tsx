@@ -78,9 +78,6 @@ export function CustomCursor() {
 
   if (!enabled) return null;
 
-  // Determine styles based on variant
-  const isHovered = variant !== 'default';
-  
   // Arrow scaling
   let arrowScale = 1;
   if (isClicked) arrowScale = 0.9;
@@ -88,7 +85,6 @@ export function CustomCursor() {
   else if (variant === 'link') arrowScale = 1.05;
 
   // Halo properties
-  const showHalo = isHovered || isClicked;
   let haloScale = 0;
   let haloOpacity = 0;
   

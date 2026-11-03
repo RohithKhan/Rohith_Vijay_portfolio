@@ -9,13 +9,14 @@ export function Achievements() {
   return (
     <section id="achievements" className="relative py-28 sm:py-36 px-6 max-w-6xl mx-auto">
       <SectionHeading
-        eyebrow="Achievements"
+        eyebrow="Credentials & Milestones"
         title={
           <>
-            Certificates &amp; <span className="text-gradient-accent">milestones</span>.
+            Certifications, Awards &amp;{' '}
+            <span className="text-gradient-accent">Milestones</span>.
           </>
         }
-        description="A record of continuous learning — credentials earned and numbers earned along the way."
+        description="Formal credentials, academic milestones, and competitive programming achievements demonstrating technical competence."
       />
 
       {/* Stat strip with glow-pulse counters */}

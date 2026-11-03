@@ -48,6 +48,7 @@ export function ProjectCard({ project, index, onOpen }: Props) {
         <button
           data-cursor="view"
           data-cursor-label="View"
+          aria-label={`View case study details for ${project.name}`}
           onClick={() => onOpen(project)}
           className="block w-full text-left h-full"
         >

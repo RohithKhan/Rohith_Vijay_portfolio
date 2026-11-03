@@ -10,13 +10,14 @@ export function Projects() {
   return (
     <section id="projects" className="relative py-28 sm:py-36 px-6 max-w-6xl mx-auto">
       <SectionHeading
-        eyebrow="Selected Work"
+        eyebrow="Portfolio & Case Studies"
         title={
           <>
-            Projects I&apos;ve built <span className="text-gradient-accent">end to end</span>.
+            Featured Web Applications &amp;{' '}
+            <span className="text-gradient-accent">Development Projects</span>.
           </>
         }
-        description="Each project is a case study in turning a real problem into a polished product. Tap any card to dive deeper."
+        description="Production web applications and platforms engineered with modern MERN stack tools, TypeScript, and high-performance design standards."
       />
 
       <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

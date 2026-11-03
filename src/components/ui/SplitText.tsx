@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef, type ReactNode } from 'react';
+import { useRef } from 'react';
 
 type Props = {
   children: string;
